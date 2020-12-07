@@ -6,3 +6,4 @@ build
 
 # Ignore VSCode Settings
 .vscode
+app/src/main/CREDENTIALS.json
