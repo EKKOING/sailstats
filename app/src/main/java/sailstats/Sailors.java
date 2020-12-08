@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Sailors {
-    private ArrayList<Sailor>[][] sailorDirectory =  new ArrayList[26][26];
+    private ArrayList<Sailor>[][] sailorDirectory = new ArrayList[26][26];
 
     public Sailors() {
         for (ArrayList<Sailor>[] arrayLists : sailorDirectory) {
@@ -26,9 +26,11 @@ public class Sailors {
     }
 
     public Sailor addNewSailor(String firstName, String lastName) {
-        ArrayList<Sailor> newSailorLocation = sailorDirectory[Sailor.getIndexFromName(firstName)][Sailor.getIndexFromName(lastName)];
+        ArrayList<Sailor> newSailorLocation = sailorDirectory[Sailor.getIndexFromName(firstName)][Sailor
+                .getIndexFromName(lastName)];
         if (newSailorLocation == null) {
-            sailorDirectory[Sailor.getIndexFromName(firstName)][Sailor.getIndexFromName(lastName)] = new ArrayList<Sailor>(0);
+            sailorDirectory[Sailor.getIndexFromName(firstName)][Sailor
+                    .getIndexFromName(lastName)] = new ArrayList<Sailor>(0);
             newSailorLocation = sailorDirectory[Sailor.getIndexFromName(firstName)][Sailor.getIndexFromName(lastName)];
         }
         int newSailorIndexNum = newSailorLocation.size();
@@ -45,7 +47,8 @@ public class Sailors {
             for (ArrayList<Sailor> arrayList : arrayLists) {
                 if (arrayList != null) {
                     for (Sailor sailor : arrayList) {
-                        sailorDirectoryString += sailor.getUsername() + " - " + sailor.LAST_NAME + ", " + sailor.FIRST_NAME + " - " + sailor.club + "/" + sailor.team + "\n";
+                        sailorDirectoryString += sailor.getUsername() + " - " + sailor.LAST_NAME + ", "
+                                + sailor.FIRST_NAME + " - " + sailor.club + "/" + sailor.team + "\n";
                     }
                 }
             }

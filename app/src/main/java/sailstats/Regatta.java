@@ -1,4 +1,5 @@
 package sailstats;
+
 import main.java.sailstats.*;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -11,12 +12,12 @@ public class Regatta {
     public final String EVENT_NAME;
     private ArrayList<Integer> races = new ArrayList<Integer>(0);
     private Hashtable<Integer, String> competitors = new Hashtable<Integer, String>(0);
-    
+
     public Regatta(String name, int id) {
         this.EVENT_NAME = name;
         this.EVENT_ID = id;
     }
-    
+
     public boolean addCompetitor(Sailor sailor, int sailNumber) {
         if (competitors.containsKey(sailNumber)) {
             return false;
@@ -111,7 +112,7 @@ public class Regatta {
         String newLine = "\n";
         String startLine = "| ";
         String resultsString = "| ";
-        String[] headers = {"Place", "Username", "Total"};
+        String[] headers = { "Place", "Username", "Total" };
         int[] stringLengths = new int[3];
         int i = 0;
         for (String header : headers) {

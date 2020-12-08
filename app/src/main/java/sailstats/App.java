@@ -5,6 +5,7 @@ package sailstats;
 
 public class App {
     public static final boolean IS_DEBUG_MODE = true;
+
     public void startUp() {
         SailStatsManager sailStatsManager = new SailStatsManager(true);
     }

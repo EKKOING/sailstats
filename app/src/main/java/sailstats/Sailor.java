@@ -28,13 +28,13 @@ public class Sailor {
         this.NUM_INDEX = 0;
     }
 
-    public static int getIndexFromName(String name){
+    public static int getIndexFromName(String name) {
         return name.toLowerCase().charAt(0) - 'a';
     }
 
     public String getUsername() {
-        char firstChar = (char)('a' + FIRST_INDEX);
-        char secondChar = (char)('a' + SECOND_INDEX);
+        char firstChar = (char) ('a' + FIRST_INDEX);
+        char secondChar = (char) ('a' + SECOND_INDEX);
         return (String.valueOf(firstChar) + String.valueOf(secondChar) + NUM_INDEX).toUpperCase();
     }
 
@@ -53,7 +53,8 @@ public class Sailor {
         sailorProfile += "ID - Event Name - Place - Num Competitors\n";
         for (Integer index : regattas) {
             Regatta currentRegatta = SailStatsManager.regattas.getRegatta(index);
-            sailorProfile += currentRegatta.EVENT_ID + " - " + currentRegatta.EVENT_NAME + " - " + currentRegatta.getPlaceOfSailor(this) + " - " + currentRegatta.numOfCompetitors() + "\n";
+            sailorProfile += currentRegatta.EVENT_ID + " - " + currentRegatta.EVENT_NAME + " - "
+                    + currentRegatta.getPlaceOfSailor(this) + " - " + currentRegatta.numOfCompetitors() + "\n";
         }
         return sailorProfile;
     }

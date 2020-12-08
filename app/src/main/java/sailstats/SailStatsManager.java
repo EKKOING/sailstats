@@ -26,16 +26,16 @@ public class SailStatsManager {
             addDebugData();
         }
         if (cliMode) {
-            while(!endProgram) {
+            while (!endProgram) {
                 nextCommand.accept(steps);
             }
         }
     }
 
-    public static void clearScreen() {  
-        //System.out.print("\033[H\033[2J");  
-        //System.out.flush();  
-        //TODO Figure Out Why This Doesn't Work
+    public static void clearScreen() {
+        // System.out.print("\033[H\033[2J");
+        // System.out.flush();
+        // TODO Figure Out Why This Doesn't Work
     }
 
     public static void addHorizontalBreak() {
@@ -80,18 +80,21 @@ public class SailStatsManager {
             }
         }
     }
-    
+
     public void endProgram(int steps) {
         System.out.println("Exiting SailStats!");
         endProgram = true;
     }
 
     public void mainMenu(int steps) {
-        createMenu("What would you like to do?",new String[]{"Manage Regattas", "Manage Sailors", "Quit"}, new ArrayList<Consumer<Integer>>(List.of(this::regattasMain, this::sailorsMain, this::endProgram)), 0);
+        createMenu("What would you like to do?", new String[] { "Manage Regattas", "Manage Sailors", "Quit" },
+                new ArrayList<Consumer<Integer>>(List.of(this::regattasMain, this::sailorsMain, this::endProgram)), 0);
     }
 
     public void regattasMain(int steps) {
-        createMenu("What would you like to do?",new String[]{"View Regattas", "Open Regatta", "Create New Regatta"}, new ArrayList<Consumer<Integer>>(List.of(this::viewRegattas, this::openRegatta, this::createRegatta)), 3);
+        createMenu("What would you like to do?", new String[] { "View Regattas", "Open Regatta", "Create New Regatta" },
+                new ArrayList<Consumer<Integer>>(List.of(this::viewRegattas, this::openRegatta, this::createRegatta)),
+                0);
     }
 
     public void viewRegattas(int steps) {
@@ -139,7 +142,11 @@ public class SailStatsManager {
         System.out.println("PRESS ENTER TO MOVE TO REGATTA EDIT MENU");
         scanner.nextLine();
         currentRegatta = regatta;
-        createMenu("What would you like to do?", new String[]{"Score A Race", "Add an existing sailor", "Add a new sailor"}, new ArrayList<Consumer<Integer>>(List.of(this::scoreARace, this::addSailorByID, this::addNewSailorToEvent)), 0);
+        createMenu("What would you like to do?",
+                new String[] { "Score A Race", "Add an existing sailor", "Add a new sailor" },
+                new ArrayList<Consumer<Integer>>(
+                        List.of(this::scoreARace, this::addSailorByID, this::addNewSailorToEvent)),
+                0);
     }
 
     public void scoreARace(int steps) {
@@ -162,7 +169,7 @@ public class SailStatsManager {
                     results.add(sailNum);
                 }
             } catch (Exception e) {
-                if (!lastInput.toLowerCase().equals("done")){
+                if (!lastInput.toLowerCase().equals("done")) {
                     System.out.println("Not a number!");
                 }
             }
@@ -196,7 +203,7 @@ public class SailStatsManager {
         }
         addHorizontalBreak();
         System.out.println("Adding " + currentSailor.LAST_NAME + ", " + currentSailor.FIRST_NAME + " to event");
-        int sailNumber = -1; 
+        int sailNumber = -1;
         while (sailNumber == -1) {
             System.out.print("Enter Sailor Event Sail Number > ");
             String sailNumberString = scanner.nextLine();
@@ -206,7 +213,7 @@ public class SailStatsManager {
                     System.out.println("Sail Number Already In Use For Event");
                 } else if (sailTemp < 1) {
                     System.out.println("Sail Numbers Must Be Larger Than 0");
-                }   else {
+                } else {
                     sailNumber = sailTemp;
                 }
             } catch (Exception e) {
@@ -216,7 +223,8 @@ public class SailStatsManager {
         currentRegatta.addCompetitor(currentSailor, sailNumber);
         clearScreen();
         addHorizontalBreak();
-        System.out.println("Sailor with username: '" + currentSailor.getUsername() + "' added to event with sail number: " + sailNumber);
+        System.out.println("Sailor with username: '" + currentSailor.getUsername()
+                + "' added to event with sail number: " + sailNumber);
         System.out.println("PRESS ENTER TO RETURN TO REGATTA MENU");
         scanner.nextLine();
         nextCommand = previousCommand.removeLast();
@@ -237,7 +245,7 @@ public class SailStatsManager {
         }
         Sailor newSailor = sailors.addNewSailor(firstName, lastName);
         System.out.println("Sailor with username: '" + newSailor.getUsername() + "' created!");
-        int sailNumber = -1; 
+        int sailNumber = -1;
         while (sailNumber == -1) {
             System.out.print("Enter Sailor Event Sail Number > ");
             String sailNumberString = scanner.nextLine();
@@ -247,7 +255,7 @@ public class SailStatsManager {
                     System.out.println("Sail Number Already In Use For Event");
                 } else if (sailTemp < 1) {
                     System.out.println("Sail Numbers Must Be Larger Than 0");
-                }   else {
+                } else {
                     sailNumber = sailTemp;
                 }
             } catch (Exception e) {
@@ -257,7 +265,8 @@ public class SailStatsManager {
         currentRegatta.addCompetitor(newSailor, sailNumber);
         clearScreen();
         addHorizontalBreak();
-        System.out.println("Sailor with username: '" + newSailor.getUsername() + "' added to event with sail number: " + sailNumber);
+        System.out.println("Sailor with username: '" + newSailor.getUsername() + "' added to event with sail number: "
+                + sailNumber);
         System.out.println("PRESS ENTER TO RETURN TO REGATTA MENU");
         scanner.nextLine();
         nextCommand = previousCommand.removeLast();
@@ -278,7 +287,10 @@ public class SailStatsManager {
     }
 
     public void sailorsMain(int steps) {
-        createMenu("What would you like to do?",new String[]{"View Sailors", "Open Sailor Profile", "Create New Sailor"}, new ArrayList<Consumer<Integer>>(List.of(this::viewSailors, this::openSailor, this::createNewSailor)), 0);
+        createMenu("What would you like to do?",
+                new String[] { "View Sailors", "Open Sailor Profile", "Create New Sailor" },
+                new ArrayList<Consumer<Integer>>(List.of(this::viewSailors, this::openSailor, this::createNewSailor)),
+                0);
     }
 
     public void viewSailors(int steps) {
@@ -290,7 +302,7 @@ public class SailStatsManager {
         scanner.nextLine();
         nextCommand = previousCommand.removeLast();
     }
-    
+
     public void openSailor(int steps) {
         clearScreen();
         addHorizontalBreak();
@@ -301,7 +313,7 @@ public class SailStatsManager {
             try {
                 Sailor tempSailor = sailors.getSailor(possibleID);
                 currentSailor = tempSailor;
-                
+
             } catch (Exception e) {
                 System.out.println("Sailor Not Found With That Username");
             }
@@ -345,11 +357,27 @@ public class SailStatsManager {
         nextCommand = previousCommand.removeLast();
     }
 
+    public void addDebugData() {
+        String[] firstNames = { "Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank",
+                "George", "Hal", "Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan",
+                "Otto", "Paul", "Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter" };
 
-    public void addDebugData(){
-        String[] firstNames = {"Adam", "Alex", "Aaron", "Ben", "Carl", "Dan", "David", "Edward", "Fred", "Frank", "George", "Hal", "Hank", "Ike", "John", "Jack", "Joe", "Larry", "Monte", "Matthew", "Mark", "Nathan", "Otto", "Paul", "Peter", "Roger", "Roger", "Steve", "Thomas", "Tim", "Ty", "Victor", "Walter"};
-
-        String[] lastNames = {"Anderson", "Ashwoon", "Aikin", "Bateman", "Bongard", "Bowers", "Boyd", "Cannon", "Cast", "Deitz", "Dewalt", "Ebner", "Frick", "Hancock", "Haworth", "Hesch", "Hoffman", "Kassing", "Knutson", "Lawless", "Lawicki", "Mccord", "McCormack", "Miller", "Myers", "Nugent", "Ortiz", "Orwig", "Ory", "Paiser", "Pak", "Pettigrew", "Quinn", "Quizoz", "Ramachandran", "Resnick", "Sagar", "Schickowski", "Schiebel", "Sellon", "Severson", "Shaffer", "Solberg", "Soloman", "Sonderling", "Soukup", "Soulis", "Stahl", "Sweeney", "Tandy", "Trebil", "Trusela", "Trussel", "Turco", "Uddin", "Uflan", "Ulrich", "Upson", "Vader", "Vail", "Valente", "Van Zandt", "Vanderpoel", "Ventotla", "Vogal", "Wagle", "Wagner", "Wakefield", "Weinstein", "Weiss", "Woo", "Yang", "Yates", "Yocum", "Zeaser", "Zeller", "Ziegler", "Bauer", "Baxster", "Casal", "Cataldi", "Caswell", "Celedon", "Chambers", "Chapman", "Christensen", "Darnell", "Davidson", "Davis", "DeLorenzo", "Dinkins", "Doran", "Dugelman", "Dugan", "Duffman", "Eastman", "Ferro", "Ferry", "Fletcher", "Fietzer", "Hylan", "Hydinger", "Illingsworth", "Ingram", "Irwin", "Jagtap", "Jenson", "Johnson", "Johnsen", "Jones", "Jurgenson", "Kalleg", "Kaskel", "Keller", "Leisinger", "LePage", "Lewis", "Linde", "Lulloff", "Maki", "Martin", "McGinnis", "Mills", "Moody", "Moore", "Napier", "Nelson", "Norquist", "Nuttle", "Olson", "Ostrander", "Reamer", "Reardon", "Reyes", "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom", "Sawyer", "Schlicht", "Schmitt", "Schwager", "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler"};
+        String[] lastNames = { "Anderson", "Ashwoon", "Aikin", "Bateman", "Bongard", "Bowers", "Boyd", "Cannon", "Cast",
+                "Deitz", "Dewalt", "Ebner", "Frick", "Hancock", "Haworth", "Hesch", "Hoffman", "Kassing", "Knutson",
+                "Lawless", "Lawicki", "Mccord", "McCormack", "Miller", "Myers", "Nugent", "Ortiz", "Orwig", "Ory",
+                "Paiser", "Pak", "Pettigrew", "Quinn", "Quizoz", "Ramachandran", "Resnick", "Sagar", "Schickowski",
+                "Schiebel", "Sellon", "Severson", "Shaffer", "Solberg", "Soloman", "Sonderling", "Soukup", "Soulis",
+                "Stahl", "Sweeney", "Tandy", "Trebil", "Trusela", "Trussel", "Turco", "Uddin", "Uflan", "Ulrich",
+                "Upson", "Vader", "Vail", "Valente", "Van Zandt", "Vanderpoel", "Ventotla", "Vogal", "Wagle", "Wagner",
+                "Wakefield", "Weinstein", "Weiss", "Woo", "Yang", "Yates", "Yocum", "Zeaser", "Zeller", "Ziegler",
+                "Bauer", "Baxster", "Casal", "Cataldi", "Caswell", "Celedon", "Chambers", "Chapman", "Christensen",
+                "Darnell", "Davidson", "Davis", "DeLorenzo", "Dinkins", "Doran", "Dugelman", "Dugan", "Duffman",
+                "Eastman", "Ferro", "Ferry", "Fletcher", "Fietzer", "Hylan", "Hydinger", "Illingsworth", "Ingram",
+                "Irwin", "Jagtap", "Jenson", "Johnson", "Johnsen", "Jones", "Jurgenson", "Kalleg", "Kaskel", "Keller",
+                "Leisinger", "LePage", "Lewis", "Linde", "Lulloff", "Maki", "Martin", "McGinnis", "Mills", "Moody",
+                "Moore", "Napier", "Nelson", "Norquist", "Nuttle", "Olson", "Ostrander", "Reamer", "Reardon", "Reyes",
+                "Rice", "Ripka", "Roberts", "Rogers", "Root", "Sandstrom", "Sawyer", "Schlicht", "Schmitt", "Schwager",
+                "Schutz", "Schuster", "Tapia", "Thompson", "Tiernan", "Tisler" };
         Random rand = new Random();
         for (String lastName : lastNames) {
             for (String firstName : firstNames) {
@@ -359,12 +387,12 @@ public class SailStatsManager {
             }
         }
 
-        String[] regattaNameComponents = {"AY","JO","US","NZ","TT"};
+        String[] regattaNameComponents = { "AY", "JO", "US", "NZ", "TT" };
         for (String string : regattaNameComponents) {
             for (String string2 : regattaNameComponents) {
-                Regatta newRegatta = regattas.addNewRegatta(string+string2);
+                Regatta newRegatta = regattas.addNewRegatta(string + string2);
             }
         }
-        
+
     }
 }
