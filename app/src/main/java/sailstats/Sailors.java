@@ -1,7 +1,6 @@
 package sailstats;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Sailors {
     private ArrayList<Sailor>[][] sailorDirectory = new ArrayList[26][26];

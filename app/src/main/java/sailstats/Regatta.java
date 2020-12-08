@@ -1,11 +1,10 @@
 package sailstats;
 
-import main.java.sailstats.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
-import java.util.Arrays;
 
 public class Regatta {
     public final int EVENT_ID;
