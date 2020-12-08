@@ -4,11 +4,12 @@
 package sailstats;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public static final boolean IS_DEBUG_MODE = true;
+    public void startUp() {
+        SailStatsManager sailStatsManager = new SailStatsManager(true);
     }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        new App().startUp();
     }
 }
