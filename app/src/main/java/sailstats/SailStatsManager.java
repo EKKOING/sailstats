@@ -7,18 +7,34 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
+/**
+ * Responsible For The CLI of the SailStats App
+ * 
+ * @author Nicholas Lorentzen
+ * @version 20201208
+ */
 public class SailStatsManager {
     public static Sailors sailors = new Sailors();
     public static Regattas regattas = new Regattas();
     public static Races races = new Races();
-    private Scanner scanner = new Scanner(System.in);
+
+    /** Holds The Previously Used Commands For Use In Back Button */
     private ArrayDeque<Consumer<Integer>> previousCommand = new ArrayDeque<>(0);
+    /** Holds The Command To Be Executed Next */
     private Consumer<Integer> nextCommand = this::mainMenu;
+
+
     private int steps = 0;
     private boolean endProgram = false;
+    private Scanner scanner = new Scanner(System.in);
+
     private Regatta currentRegatta;
     private int currentRegattaID = -1;
-
+    /**
+     * Creates A Sails Stats Instance
+     * 
+     * @param cliMode Can Disable The CLI menus for use as a library for another App
+     */
     public SailStatsManager(boolean cliMode) {
         System.out.println("Starting SailStats!");
         if (App.IS_DEBUG_MODE) {
@@ -42,6 +58,13 @@ public class SailStatsManager {
         System.out.println("==================================");
     }
 
+    /**
+     * Creates a GUI Menu
+     * @param prompt Title of the menu
+     * @param options Descriptiions of each subitem
+     * @param actions Lambdas for each possible choice
+     * @param auto Default choice (0 for no default)
+     */
     public void createMenu(String prompt, String[] options, ArrayList<Consumer<Integer>> actions, Integer auto) {
         clearScreen();
         System.out.println(prompt);

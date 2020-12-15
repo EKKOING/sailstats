@@ -2,6 +2,12 @@ package sailstats;
 
 import java.util.ArrayList;
 
+/**
+ * Holds Multiple Regatta Objects
+ * 
+ * @author Nicholas Lorentzen
+ * @version 20201208
+ */
 public class Regattas {
     private ArrayList<Regatta> regattaList = new ArrayList<Regatta>(0);
 

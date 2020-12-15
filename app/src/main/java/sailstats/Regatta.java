@@ -6,6 +6,12 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Defines A Regatta
+ * 
+ * @author Nicholas Lorentzen
+ * @version 20201208
+ */
 public class Regatta {
     public final int EVENT_ID;
     public final String EVENT_NAME;

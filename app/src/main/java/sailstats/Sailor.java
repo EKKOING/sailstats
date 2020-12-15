@@ -2,6 +2,12 @@ package sailstats;
 
 import java.util.ArrayList;
 
+/**
+ * Defines A Sailor
+ * 
+ * @author Nicholas Lorentzen
+ * @version 20201208
+ */
 public class Sailor {
     public final String FIRST_NAME;
     public final String LAST_NAME;
